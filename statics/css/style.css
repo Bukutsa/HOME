@@ -1,0 +1,170 @@
+/* 1) Base Reset & Utility */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  color: #333;
+  background: #f7f8fa;
+}
+
+/* 2) Header / Navbar */
+.site-header {
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* 3) Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+.logo img {
+  height: 40px;
+  margin-right: 0.5rem;
+}
+.logo span {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* 4) Menu & Button */
+/* 4) Menu & Button – update these two rules: */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  flex: 1;               /* ← allow it to grow between logo & button */
+  justify-content: center;/* ← center the links */
+}
+
+.btn-enquire {
+  /* remove the old `margin-left: 2rem;` */
+  margin-left: auto;     /* ← push itself to the far right */
+  padding: 0.5rem 1rem;
+  background: #0059b3;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background 0.2s, transform 0.2s;
+}
+
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+.nav-list a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-list a:hover {
+  color: #0059b3;
+}
+
+.btn-enquire:hover {
+  background: #004080;
+  transform: translateY(-2px);
+}
+
+/* 5) Hamburger (mobile) */
+.nav-toggle {
+  display: none;
+}
+.nav-toggle-label {
+  display: none;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+  position: relative;
+}
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: #333;
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+  position: absolute;
+  transition: all 0.3s;
+}
+.nav-toggle-label span {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.nav-toggle-label span::before {
+  content: '';
+  top: -8px;
+}
+.nav-toggle-label span::after {
+  content: '';
+  top: 8px;
+}
+
+/* 6) Responsive Breakpoint */
+@media (max-width: 768px) {
+  /* show hamburger */
+  .nav-toggle-label {
+    display: block;
+  }
+  /* hide default menu */
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+  }
+  .nav-list li + li {
+    border-top: 1px solid #eee;
+  }
+  .nav-list a {
+    padding: 0.75rem 1rem;
+    width: 100%;
+  }
+  .btn-enquire {
+    margin: 1rem;
+    text-align: center;
+  }
+
+  /* Toggle open */
+  .nav-toggle:checked ~ .nav-menu {
+    max-height: 400px; /* plenty for 4 links + button */
+  }
+  /* Animate hamburger to X */
+  .nav-toggle:checked + .nav-toggle-label span {
+    background: transparent;
+  }
+  .nav-toggle:checked + .nav-toggle-label span::before {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .nav-toggle:checked + .nav-toggle-label span::after {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
